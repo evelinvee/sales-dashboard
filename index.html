@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sales Performance Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5c7cfa"/><stop offset="1" stop-color="#3b5bdb"/>
+            </linearGradient>
+          </defs>
+          <rect width="36" height="36" rx="10" fill="url(#lg)"/>
+          <path d="M8 24 L15 17 L20 21 L27 12" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 12 H27 V17" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="8" cy="24" r="1.7" fill="#ffffff"/>
+        </svg>
+      </span>
+      <span class="logo-text">Northwind<small>Analytics</small></span>
+    </div>
+    <nav class="nav">
+      <a class="nav-item active" href="#sec-overview"><span class="ic">▦</span>Overview</a>
+      <a class="nav-item" href="#sec-revenue"><span class="ic">↗</span>Revenue</a>
+      <a class="nav-item" href="#sec-products"><span class="ic">◷</span>Products</a>
+      <a class="nav-item" href="#sec-regions"><span class="ic">◉</span>Regions</a>
+    </nav>
+    <div class="side-foot" id="sideFoot"></div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="head">
+      <div>
+        <h1>Sales Performance</h1>
+        <p class="sub">E-commerce overview · trailing 18 months</p>
+      </div>
+      <div class="filter">
+        <label for="region">Region</label>
+        <select id="region"></select>
+      </div>
+    </header>
+
+    <section class="kpis" id="sec-overview">
+      <div class="kpi">
+        <div class="k-top"><span class="k-label">Total revenue</span></div>
+        <div class="k-value" id="kpi-revenue">—</div>
+        <div class="k-delta" id="d-revenue"></div>
+      </div>
+      <div class="kpi">
+        <div class="k-top"><span class="k-label">Orders</span></div>
+        <div class="k-value" id="kpi-orders">—</div>
+        <div class="k-delta" id="d-orders"></div>
+      </div>
+      <div class="kpi">
+        <div class="k-top"><span class="k-label">Units sold</span></div>
+        <div class="k-value" id="kpi-units">—</div>
+        <div class="k-delta" id="d-units"></div>
+      </div>
+      <div class="kpi">
+        <div class="k-top"><span class="k-label">Avg order value</span></div>
+        <div class="k-value" id="kpi-aov">—</div>
+        <div class="k-delta" id="d-aov"></div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span-2" id="sec-revenue">
+        <div class="card-head"><h2>Revenue trend</h2><span class="hint">monthly</span></div>
+        <div class="chart-wrap"><canvas id="monthChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h2>Revenue by category</h2></div>
+        <div class="chart-wrap"><canvas id="catChart"></canvas></div>
+      </div>
+      <div class="card" id="sec-regions">
+        <div class="card-head"><h2>Revenue by region</h2><span class="hint">all regions</span></div>
+        <div class="chart-wrap"><canvas id="regionChart"></canvas></div>
+      </div>
+      <div class="card span-2" id="sec-products">
+        <div class="card-head"><h2>Top products</h2><span class="hint">by revenue</span></div>
+        <div class="table-scroll">
+          <table class="ptable">
+            <thead>
+              <tr><th>#</th><th>Product</th><th>Category</th><th class="num">Units</th><th class="num">Revenue</th><th class="num">Share</th></tr>
+            </thead>
+            <tbody id="prodBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer class="foot" id="foot"></footer>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
